@@ -11,7 +11,7 @@ env:
 jobs:
   testRunner:
     name: Test all modes 📝
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -52,7 +52,7 @@ jobs:
   buildWebGL:
     needs: testRunner
     name: Build for WebGL 🖥️
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       fail-fast: false
     steps:
@@ -95,7 +95,7 @@ jobs:
   deployPages:
     needs: buildWebGL
     name: Deploy to Github Pages 🚀
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
