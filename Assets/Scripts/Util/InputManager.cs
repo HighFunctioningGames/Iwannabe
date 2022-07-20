@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour {
     private bool grounded, leftKneeRaised, rightKneeRaised, pushing, canBrake, waitForInput, leftCrouching, rightCrouching, readyToPop, leftPopd, rightPopd;
     public bool steering;
 
+    public StateMachine owner;
+
     // Start is called before the first frame update
     public void Awake() {
         #region Ps4 Buttons
@@ -18,7 +20,7 @@ public class InputManager : MonoBehaviour {
         triangle = "Triangle";
         l1 = "L1";
         l2 = "L2";
-        l3 = "L3";
+        l3 = "L3";        
         r1 = "R1";
         r2 = "R2";
         r3 = "R3";
@@ -83,7 +85,7 @@ public class InputManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         waitForInput = true;
         if (grounded) {
-//            owner.NextState(owner.idleState);
+   //         owner.ChangeState(new IdleState());
         }
     }
 
@@ -94,7 +96,7 @@ public class InputManager : MonoBehaviour {
         grounded = true;
         leftPopd = false;
         rightPopd = false;
-//        owner.NextState(owner.idleState);
+    //    owner.ChangeState(new IdleState());
     }
 
     private void GetPushInput() {
