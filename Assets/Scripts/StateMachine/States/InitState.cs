@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
-public interface IState {    
-
-    StateMachine sm { get; set; }
+public class InitState : IState {
+    
+    public StateMachine sm { get; set; }
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
@@ -16,17 +16,19 @@ public interface IState {
         this.PhysicsUpdate();
     }
     
-    public void Exit();
-    
+    public void Exit() {
+
+    }
+
 #region Execute
-    private void HandleInput() {
+
+    public void HandleInput() {
+                 
+    }
+
+    public void PhysicsUpdate() {
 
     }
 
-    private void PhysicsUpdate() {
-        
-    }
 #endregion
 }
-
-

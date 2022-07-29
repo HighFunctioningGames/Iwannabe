@@ -35,14 +35,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0.03
+    - _AlphaClip: 0.01
     - _CloudAlpha: 1.5
-    - _CloudPower: 2.15
+    - _CloudPower: 2
     - _CloudsScale: 120
-    - _DistortScale: 158.9
+    - _DistortScale: 120
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _VertexOffset: 0.03
+    - _VertexOffset: 0.01
     m_Colors:
     - _CloudColor: {r: 0.8117553, g: 0.740566, b: 1, a: 0.3921569}
     - _CloudSpeed: {r: 0.005, g: 0.005, b: 0, a: 0}

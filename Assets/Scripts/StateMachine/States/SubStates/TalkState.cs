@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public class TalkState : ISubState {
 
-public interface ISubState {    
-
-    StateMachine sm { get; set; }
+    public StateMachine sm { get; set; }
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
+       // sm.pc.isTalking = true;
     }
 
     public void Execute() {
@@ -15,16 +15,16 @@ public interface ISubState {
         this.AnimUpdate();
     }
 
-    public void Exit();
-    
-#region Execute
-    private void LogicUpdate() {
+    public void Exit() {
 
     }
     
-    private void AnimUpdate() {
-
+#region Execute
+    public void LogicUpdate() {
+        
+    }
+    public void AnimUpdate() {
+        
     }
 #endregion
 }
-
