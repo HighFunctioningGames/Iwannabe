@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collisions : MonoBehaviour
+public class Collisions_Physics : MonoBehaviour
 {
     public Vector3 collision = Vector3.zero;
     public LayerMask layer;

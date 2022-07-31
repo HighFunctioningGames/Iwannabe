@@ -14,8 +14,6 @@ public class InputManager : MonoBehaviour {
 
     private bool isPaused, inputHeld;
 
-    public StateMachine owner;
-
     // Start is called before the first frame update
     public void Awake() {
         #region Ps4 Buttons
@@ -72,7 +70,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void RotationInput(StateMachine sm) {
-        sm.pc.rotateAngle = Vector2.Angle(Vector3.forward, RightStick()); 
+        sm.pc.p.rotateAngle = Vector2.Angle(Vector3.forward, RightStick()); 
     }
 
     public void OffBoardInput(StateMachine sm) {

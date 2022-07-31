@@ -25,7 +25,7 @@ public class OffBoardState : IState {
 
     private void HandleInput() {
         if(sm.im.canGetInput) {
-            if(sm.pc.isTalking){
+            if(sm.pc.p.isTalking){
                 sm.im.canGetInput = false;
                 sm.im.TalkInput(this.sm);
             } else {
@@ -33,18 +33,6 @@ public class OffBoardState : IState {
                 sm.im.RotationInput(sm);
             }
         }
-        
-        // switch(subState) {
-        //     case OffMoveState:
-        //         smac.ChangeSubState(subState);
-        //     break;
-
-        //     // the reason for doing things this way is to account for substates that incite a state change, 
-        //     // i should group cases this way, i don't know exactly how to make that a case
-        //     case OffIdleState:
-        //         smac.ChangeSubState(subState);
-        //     break;
-        // }
     }
 
     private void PhysicsUpdate() {

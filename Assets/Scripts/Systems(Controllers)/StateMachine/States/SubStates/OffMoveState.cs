@@ -25,11 +25,14 @@ public class OffMoveState : ISubState {
     public void LogicUpdate() {
 
         // Add velocity from input
-        sm.pc.velocity.x += sm.im.LeftStick().x;
-        sm.pc.velocity.z += sm.im.LeftStick().y;
+        sm.pc.p.velocity.x += sm.im.LeftStick().x;
+        sm.pc.p.velocity.z += sm.im.LeftStick().y;
         
         // Look in direction of movement
-        sm.pc.canLookTowardsVelocity = true;
+        sm.pc.p.canLookTowardsVelocity = true;
+
+        // Add tilt to movement in direction of velocity
+        sm.pc.p.canTiltTowardsVelocity = true;
         
     }
 
