@@ -21,12 +21,11 @@ public class SquattingState : ISubState {
 
     public void Exit() {
         Transform collider = sm.pc.p.rotater.transform.GetChild(0).GetChild(0);
-        collider.transform.position = collider.transform.position + new Vector3(0, 0.4f, 0);
+        collider.transform.position = collider.transform.position + new Vector3(0, 0.5f, 0);
 
         // p.isS LOL!
         sm.pc.p.isSquatting = false;
         sm.pc.p.isCrouched = false;
-        
     }
     
 #region Execute
@@ -35,8 +34,8 @@ public class SquattingState : ISubState {
 
         sm.pc.p.velocity.x = leftStickInput.x;
         sm.pc.p.velocity.z = leftStickInput.y;
-
     }
+
     public void AnimUpdate() {
         
     }

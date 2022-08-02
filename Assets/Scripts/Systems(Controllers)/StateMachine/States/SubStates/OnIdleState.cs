@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffIdleState : ISubState {
+public class OnIdleState : ISubState {
 
     public StateMachine sm { get; set; }
 
@@ -12,6 +12,7 @@ public class OffIdleState : ISubState {
         Vector3 rotation = sm.pc.p.rotater.rotation.eulerAngles;
         rotation.x = 0;
         sm.pc.p.rotater.rotation = Quaternion.Euler(rotation);
+
     }
 
     public void Execute() {
@@ -25,10 +26,7 @@ public class OffIdleState : ISubState {
     
 #region Execute
     public void LogicUpdate() {
-        float decayRate = sm.pc.p.isRunning ? 3f : 2f;
-        sm.pc.p.velocity = Vector3.MoveTowards(sm.pc.p.velocity, Vector3.zero, Time.deltaTime / decayRate);
-         
-        // Stop looking in direction of movement
+        sm.pc.p.velocity = Vector3.MoveTowards(sm.pc.p.velocity, Vector3.zero, Time.deltaTime / 10);
         sm.pc.p.canLookTowardsVelocity = false;
     }
 

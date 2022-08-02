@@ -154,10 +154,10 @@ public class InputManager : MonoBehaviour {
         }
     }
 
-    public bool TransitionInput() {
+    public void TransitionInput(StateMachine sm) {
         if(Input.GetButtonDown(square)) {
-            return true;
-        } else return false;
+            sm.ChangeState(new InputHold(), new TransitionState());
+        }
     }
 
     public void TalkInput(StateMachine sm) {

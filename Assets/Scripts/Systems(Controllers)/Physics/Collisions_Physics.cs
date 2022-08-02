@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Collisions_Physics : MonoBehaviour
 {
-    public Vector3 collision = Vector3.zero;
+    public Vector3 collision;
     public LayerMask layer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        collision = Vector3.zero;
     }
 
     // Update is called once per frame

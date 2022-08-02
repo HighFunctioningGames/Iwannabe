@@ -23,10 +23,15 @@ public class Move : MonoBehaviour
 
     void FixedUpdate() {
         Moving();
-        if (p.canLookTowardsVelocity) 
-            RotateTowards();
-        if (p.isSquatting && !p.isCrouched) 
-            Crouch();
+       
+        // This is because I'm doing things in a dumb way lol, ie. moving camera here
+        // 'nother will fix later LOLOLOL
+        if(p.canMove) {
+            if (p.canLookTowardsVelocity) 
+                RotateTowards();
+            if (p.isSquatting && !p.isCrouched) 
+                Crouch();
+        }
     }
 
     void Moving() {
@@ -58,7 +63,7 @@ public class Move : MonoBehaviour
 
     void Crouch() {
        Transform collider = p.rotater.transform.GetChild(0).GetChild(0);
-        collider.transform.position = collider.transform.position - new Vector3(0, 0.4f, 0);
+        collider.transform.position = collider.transform.position - new Vector3(0, 0.5f, 0);
         p.isCrouched = true;
     }
 }

@@ -9,6 +9,7 @@ public class OffBoardState : IState {
      public void Enter(StateMachine _sm) {
         sm = _sm;
         sm.im.canGetInput = true;
+        sm.pc.p.canMove = true;
     }
 
     public void Execute() {
@@ -18,7 +19,7 @@ public class OffBoardState : IState {
     }
     
     public void Exit() {
-
+        sm.pc.p.canMove = false;
     }
         
 #region Execute

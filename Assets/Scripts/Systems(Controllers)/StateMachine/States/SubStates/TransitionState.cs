@@ -21,7 +21,7 @@ public class TransitionState : ISubState {
 #region Execute
     public void LogicUpdate() {
         if(sm.WasThisThePreviousState("OffBoardState")) 
-            sm.ChangeState(new OnBoardState(), new OffIdleState());
+            sm.ChangeState(new OnBoardState(), new OnIdleState());
         else if(sm.WasThisThePreviousState("OnBoardState")) 
             sm.ChangeState(new OffBoardState(), new OffIdleState());
         else sm.ChangeState(sm.GetPreviousState(), sm.GetPreviousSubState());
