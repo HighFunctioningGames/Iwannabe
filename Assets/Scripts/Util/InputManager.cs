@@ -8,7 +8,7 @@ using UnityEngine;
 public class InputManager : MonoBehaviour {
 
     // Ps4 Buttons
-    private string cross, square, triangle, circle, l1, l2, l3, r1, r2, r3, leftStickX, leftStickY, rightStickX, rightStickY, l2Trigger, r2Trigger, dPadX, dPadY, share, options, ps, padPress;
+    private string cross, square, triangle, circle, l1, l2, l3, r1, r2, r3, leftStickX, leftStickY, rightStickX, rightStickY, lTrigger, rTrigger, dPadX, dPadY, share, options, ps, padPress;
     private bool onBoard, offBoard, grounded, leftKneeRaised, rightKneeRaised, pushing, canBrake, waitForInput, leftCrouching, rightCrouching, readyToPop, leftPopd, rightPopd;
     public bool steering, canGetInput;
 
@@ -31,8 +31,8 @@ public class InputManager : MonoBehaviour {
         leftStickY = "LeftStickY";
         rightStickX = "RightStickX";
         rightStickY = "RightStickY";
-        l2Trigger = "L2Trigger";
-        r2Trigger = "R2Trigger";
+        lTrigger = "L2Trigger";
+        rTrigger = "R2Trigger";
         dPadX = "DPadX";
         dPadY = "DPadY";
         share = "Share";
@@ -83,6 +83,10 @@ public class InputManager : MonoBehaviour {
                         if(sm.IsThisTheCurrentSubState("OffMoveState") == false)
                             sm.ChangeSubState(new OffMoveState());
                         break;
+                    case "Squatting":
+                        if(sm.IsThisTheCurrentSubState("SquattingState") == false)
+                            sm.ChangeSubState(new SquattingState());
+                        break;
                     case "Cross":
                         if(sm.IsThisTheCurrentState("InputHold") == false  
                             && sm.IsThisTheCurrentSubState("InteractState") == false) 
@@ -121,9 +125,19 @@ public class InputManager : MonoBehaviour {
             return "Square";
         else if (Input.GetButtonDown(triangle))
             return "Triangle";
+        else if (LTrigger() < 1 && RTrigger() < 1)
+            return "Squatting";
         else if(LeftStick().x != 0 || LeftStick().y != 0)
             return "Moving";
         else return "Idle";
+    }
+
+    public float LTrigger() {
+        return Input.GetAxisRaw(lTrigger);
+    }
+
+    public float RTrigger() {
+        return Input.GetAxisRaw(rTrigger);
     }
 
     public Vector2 LeftStick() {
@@ -134,6 +148,12 @@ public class InputManager : MonoBehaviour {
         return new Vector2(Input.GetAxisRaw(rightStickX), Input.GetAxisRaw(rightStickY));
     }
 
+    public void JumpInput(StateMachine sm) {
+        if(LTrigger() + RTrigger() >= 1f) {
+            Debug.Log("Jump!");
+        }
+    }
+
     public bool TransitionInput() {
         if(Input.GetButtonDown(square)) {
             return true;
@@ -141,7 +161,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void TalkInput(StateMachine sm) {
-        
+
         // idk maybe a coroutine to get leftstick movement 
         canGetInput = true;
     }

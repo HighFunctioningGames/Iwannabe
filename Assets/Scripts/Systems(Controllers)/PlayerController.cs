@@ -16,8 +16,4 @@ public class PlayerController : MonoBehaviour {
 
     public void Update() {
     }
-
-    void Move(bool isMoving) {
-
-    }
 }

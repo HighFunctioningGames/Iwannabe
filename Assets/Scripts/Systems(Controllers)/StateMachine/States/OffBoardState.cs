@@ -29,8 +29,12 @@ public class OffBoardState : IState {
                 sm.im.canGetInput = false;
                 sm.im.TalkInput(this.sm);
             } else {
+                if(sm.pc.p.isSquatting) {
+                    sm.im.JumpInput(sm);
+                }
                 sm.im.OffBoardInput(sm);
             }
+            
         }
     }
 
