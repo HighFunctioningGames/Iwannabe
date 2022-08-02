@@ -22,10 +22,11 @@ public class Move : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Moving();
-       
+          
         // This is because I'm doing things in a dumb way lol, ie. moving camera here
         // 'nother will fix later LOLOLOL
+        Moving();
+     
         if(p.canMove) {
             if (p.canLookTowardsVelocity) 
                 RotateTowards();

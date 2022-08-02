@@ -10,6 +10,7 @@ public class OnBoardState : IState {
         sm = _sm;
         sm.pc.p.canMove = false;
         sm.pc.p.board.SwitchOn();
+        sm.pc.p.velocity *= 2;
     }
 
     public void Execute() {
