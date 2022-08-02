@@ -34,32 +34,7 @@ public class InputHold : IState {
     }
 
     public void PhysicsUpdate() {
-        // Stop looking in direction of movement
-        sm.pc.p.canLookTowardsVelocity = false;
-        
-        // Decays the player's velocity
-        if(sm.pc.p.velocity.x > 0.1) {
-            sm.pc.p.velocity.x -= 1 * Time.deltaTime * sm.pc.p.stoppingSpeed / 5;
-        } else if(sm.pc.p.velocity.x < -0.1) {
-            sm.pc.p.velocity.x += 1 * Time.deltaTime * sm.pc.p.stoppingSpeed / 5;
-        } 
-        if(sm.pc.p.velocity.z > 0.1) {
-            sm.pc.p.velocity.z -= 1 * Time.deltaTime * sm.pc.p.stoppingSpeed / 5;
-        } else if(sm.pc.p.velocity.z < -0.1) {
-            sm.pc.p.velocity.z += 1 * Time.deltaTime * sm.pc.p.stoppingSpeed / 5;
-        } 
-
-        // This is to bring to a full stop
-        if(sm.pc.p.velocity.x < 0.1 && sm.pc.p.velocity.x > 0) {
-            sm.pc.p.velocity.x = 0;
-        } else if(sm.pc.p.velocity.x > -0.1 && sm.pc.p.velocity.x < 0) {
-            sm.pc.p.velocity.x = 0;
-        } 
-        if(sm.pc.p.velocity.z < 0.1 && sm.pc.p.velocity.z > 0) {
-            sm.pc.p.velocity.z = 0;
-        } else if(sm.pc.p.velocity.z > -0.1 && sm.pc.p.velocity.z < 0) {
-            sm.pc.p.velocity.z = 0;
-        } 
+       
         if(sm.im.canGetInput) {
             sm.ChangeState(sm.GetPreviousState(), sm.GetPreviousSubState());
         }

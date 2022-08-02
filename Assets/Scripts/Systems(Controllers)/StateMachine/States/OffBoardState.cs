@@ -30,7 +30,6 @@ public class OffBoardState : IState {
                 sm.im.TalkInput(this.sm);
             } else {
                 sm.im.OffBoardInput(sm);
-                sm.im.RotationInput(sm);
             }
         }
     }

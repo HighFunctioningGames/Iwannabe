@@ -466,6 +466,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prototypeCamera: {fileID: 1150404345}
   p: {fileID: 1939766930}
+--- !u!114 &1939766932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939766927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d65871eecceac48b05f8c9dc014803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prototypeCamera: {fileID: 1150404345}
+  p: {fileID: 1939766930}
 --- !u!1001 &3013587008083526843
 PrefabInstance:
   m_ObjectHideFlags: 0

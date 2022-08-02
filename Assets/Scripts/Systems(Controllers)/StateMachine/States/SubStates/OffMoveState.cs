@@ -10,6 +10,8 @@ public class OffMoveState : ISubState {
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
+        if(sm.pc.GetComponent<Move>() == null) 
+            new Move();
     }
 
     public void Execute() {
@@ -18,22 +20,25 @@ public class OffMoveState : ISubState {
     }
     
     public void Exit() {
-
+        sm.pc.p.isRunning = false;
     }
 
 #region Execute
     public void LogicUpdate() {
+        Vector2 leftStickInput = new Vector2(sm.im.LeftStick().x, sm.im.LeftStick().y);
+
+        if (Mathf.Abs(leftStickInput.x) + Mathf.Abs(leftStickInput.y) >= 1.3f 
+            || Mathf.Abs(leftStickInput.x) >= 0.97f || Mathf.Abs(leftStickInput.y) >= 0.97f) 
+            sm.pc.p.isRunning = true;
+        else 
+            sm.pc.p.isRunning = false;    
 
         // Add velocity from input
-        sm.pc.p.velocity.x += sm.im.LeftStick().x;
-        sm.pc.p.velocity.z += sm.im.LeftStick().y;
+        sm.pc.p.velocity.x = leftStickInput.x;
+        sm.pc.p.velocity.z = leftStickInput.y;
         
         // Look in direction of movement
         sm.pc.p.canLookTowardsVelocity = true;
-
-        // Add tilt to movement in direction of velocity
-        sm.pc.p.canTiltTowardsVelocity = true;
-        
     }
 
     public void AnimUpdate() {

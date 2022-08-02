@@ -69,10 +69,6 @@ public class InputManager : MonoBehaviour {
         canGetInput = true;
     }
 
-    public void RotationInput(StateMachine sm) {
-        sm.pc.p.rotateAngle = Vector2.Angle(Vector3.forward, RightStick()); 
-    }
-
     public void OffBoardInput(StateMachine sm) {
         if(canGetInput) {
             string str = GetInputState();
@@ -113,7 +109,6 @@ public class InputManager : MonoBehaviour {
     }
 
     public string GetInputState() {
-        
         if (Input.GetButtonDown(l1)) 
             return "L1";
         else if (Input.GetButtonDown(r1)) 
@@ -146,6 +141,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void TalkInput(StateMachine sm) {
+        
         // idk maybe a coroutine to get leftstick movement 
         canGetInput = true;
     }

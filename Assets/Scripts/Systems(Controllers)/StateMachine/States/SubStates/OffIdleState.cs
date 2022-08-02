@@ -8,6 +8,10 @@ public class OffIdleState : ISubState {
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
+        sm.pc.p.isIdle = true;
+        Vector3 rotation = sm.pc.p.rotater.rotation.eulerAngles;
+        rotation.x = 0;
+        sm.pc.p.rotater.rotation = Quaternion.Euler(rotation);
     }
 
     public void Execute() {
@@ -16,38 +20,16 @@ public class OffIdleState : ISubState {
     }
 
     public void Exit() {
-
+        sm.pc.p.isIdle = false;
     }
     
 #region Execute
     public void LogicUpdate() {
-
-         // Stop looking in direction of movement
+        float decayRate = sm.pc.p.isRunning ? 3f : 2f;
+        sm.pc.p.velocity = Vector3.MoveTowards(sm.pc.p.velocity, Vector3.zero, decayRate * Time.deltaTime);
+         
+        // Stop looking in direction of movement
         sm.pc.p.canLookTowardsVelocity = false;
-        
-        // Decays the player's velocity
-        if(sm.pc.p.velocity.x > 0.1) {
-            sm.pc.p.velocity.x -= 1 * Time.deltaTime * sm.pc.p.stoppingSpeed;
-        } else if(sm.pc.p.velocity.x < -0.1) {
-            sm.pc.p.velocity.x += 1 * Time.deltaTime * sm.pc.p.stoppingSpeed;
-        } 
-        if(sm.pc.p.velocity.z > 0.1) {
-            sm.pc.p.velocity.z -= 1 * Time.deltaTime * sm.pc.p.stoppingSpeed;
-        } else if(sm.pc.p.velocity.z < -0.1) {
-            sm.pc.p.velocity.z += 1 * Time.deltaTime * sm.pc.p.stoppingSpeed;
-        } 
-
-        // This is to bring to a full stop
-        if(sm.pc.p.velocity.x < 0.1 && sm.pc.p.velocity.x > 0) {
-            sm.pc.p.velocity.x = 0;
-        } else if(sm.pc.p.velocity.x > -0.1 && sm.pc.p.velocity.x < 0) {
-            sm.pc.p.velocity.x = 0;
-        } 
-        if(sm.pc.p.velocity.z < 0.1 && sm.pc.p.velocity.z > 0) {
-            sm.pc.p.velocity.z = 0;
-        } else if(sm.pc.p.velocity.z > -0.1 && sm.pc.p.velocity.z < 0) {
-            sm.pc.p.velocity.z = 0;
-        } 
     }
 
     public void AnimUpdate() {
