@@ -33,6 +33,7 @@ public class Move : MonoBehaviour
             if (p.isSquatting && !p.isCrouched) 
                 Crouch();
         }
+        
     }
 
     void Moving() {

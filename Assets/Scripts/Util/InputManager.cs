@@ -150,7 +150,7 @@ public class InputManager : MonoBehaviour {
 
     public void JumpInput(StateMachine sm) {
         if(LTrigger() + RTrigger() >= 1f) {
-            Debug.Log("Jump!");
+   //         sm.player.GetComponentInChildren<Rigidbody>().AddForce(new Vector3 (0, 100, 0), ForceMode.Impulse);
         }
     }
 
