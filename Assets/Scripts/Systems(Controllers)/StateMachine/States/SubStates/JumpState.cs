@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class OnIdleState : ISubState {
+public class JumpState : ISubState {
 
     public StateMachine sm { get; set; }
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
-        sm.p.isIdle = true;
+        sm.pc.canJump = false;
+        sm.p.canLookTowardsVelocity = false;
         Vector3 rotation = sm.p.rotater.rotation.eulerAngles;
         rotation.x = 0;
         sm.p.rotater.rotation = Quaternion.Euler(rotation);
-
     }
 
     public void Execute() {
@@ -21,16 +20,17 @@ public class OnIdleState : ISubState {
     }
 
     public void Exit() {
-        sm.p.isIdle = false;
     }
     
 #region Execute
-    public void LogicUpdate() {
-        sm.p.velocity = Vector3.MoveTowards(sm.p.velocity, Vector3.zero, Time.deltaTime / 10);
-        sm.p.canLookTowardsVelocity = false;
+    public void LogicUpdate() 
+    {
+        sm.p.velocity.y += 2f;
+        sm.ChangeSubState(new OffMoveState());
     }
 
-    public void AnimUpdate() {
+    public void AnimUpdate() 
+    {
         
     }
 #endregion

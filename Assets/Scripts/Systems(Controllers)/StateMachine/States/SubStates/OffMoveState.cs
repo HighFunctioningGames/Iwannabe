@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class OffMoveState : ISubState {
 
-     Vector2 velocity;
-
     public StateMachine sm { get; set; }
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
-        if(sm.pc.GetComponent<Move>() == null) 
+        if(sm.p.GetComponent<Move>() == null) 
             new Move();
-        sm.pc.p.canLookTowardsVelocity = true;
+        sm.p.canLookTowardsVelocity = true;
     }
 
     public void Execute() {
@@ -21,21 +19,23 @@ public class OffMoveState : ISubState {
     }
     
     public void Exit() {
-        sm.pc.p.isRunning = false;
+        sm.p.isRunning = false;
     }
 
 #region Execute
     public void LogicUpdate() {
-        Vector2 leftStickInput = new Vector2(sm.im.LeftStick().x, sm.im.LeftStick().y);
+        Vector2 leftStickInput = sm.pc.WalkInput();
+        sm.p.velocity.x = leftStickInput.x;
+        sm.p.velocity.z = leftStickInput.y;
 
-        if (Mathf.Abs(leftStickInput.x) + Mathf.Abs(leftStickInput.y) >= 1.3f 
-            || Mathf.Abs(leftStickInput.x) >= 0.97f || Mathf.Abs(leftStickInput.y) >= 0.97f) 
-            sm.pc.p.isRunning = true;
+        if(Mathf.Abs(leftStickInput.magnitude) >= .99f) 
+        {
+            sm.p.isRunning = true;
+        } 
         else 
-            sm.pc.p.isRunning = false;    
-
-        sm.pc.p.velocity.x = leftStickInput.x;
-        sm.pc.p.velocity.z = leftStickInput.y;
+        {
+            sm.p.isRunning = false;
+        }
     }
 
     public void AnimUpdate() {

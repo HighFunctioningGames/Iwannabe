@@ -16,11 +16,13 @@ public class Skateboard : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void SwitchOff() {
+    public void SwitchOff() 
+    {
         this.gameObject.SetActive(false);
     }
 
-    public void SwitchOn() {
+    public void SwitchOn() 
+    {
         this.gameObject.SetActive(true);
     }
 }

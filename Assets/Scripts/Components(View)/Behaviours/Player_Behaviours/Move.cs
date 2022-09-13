@@ -9,19 +9,21 @@ public class Move : MonoBehaviour
     public float tiltAngle;
     public float walkSpeed, runSpeed, walkTilt, runTilt, turnSpeed, crabSpeed;
 
-    void Awake() {
+    void Awake() 
+    {
         p = this.GetComponent<Player>();
         prototypeCamera = Camera.main;
         tiltAngle = 0;
         crabSpeed = 1.75f;
         walkSpeed = 3f;
-        runSpeed = 4f;
+        runSpeed = 7f;
         walkTilt = 7f;
         runTilt = 10f;
         turnSpeed =  100f;
     }
 
-    void FixedUpdate() {
+    void FixedUpdate() 
+    {
           
         // This is because I'm doing things in a dumb way lol, ie. moving camera here
         // 'nother will fix later LOLOLOL
@@ -36,11 +38,12 @@ public class Move : MonoBehaviour
         
     }
 
-    void Moving() {
+    void Moving()
+    {
         float speed = p.isRunning ? runSpeed : p.isSquatting ? crabSpeed : walkSpeed;
         this.transform.position = Vector3.Lerp(
             this.transform.position, 
-            this.transform.position + p.velocity * speed,
+            this.transform.position + p.velocity,
             speed * Time.deltaTime
         );
         prototypeCamera.transform.position = Vector3.Lerp(
@@ -50,7 +53,8 @@ public class Move : MonoBehaviour
         ); 
     }
 
-    void RotateTowards() {
+    void RotateTowards() 
+    {
         Vector3 rotation = p.velocity;
         p.rotater.rotation = Quaternion.Slerp(
             this.transform.rotation,
@@ -63,7 +67,8 @@ public class Move : MonoBehaviour
         p.rotater.rotation = Quaternion.Euler(quaternionToAngle);
     }
 
-    void Crouch() {
+    void Crouch() 
+    {
        Transform collider = p.rotater.transform.GetChild(0).GetChild(0);
         collider.transform.position = collider.transform.position - new Vector3(0, 0.5f, 0);
         p.isCrouched = true;

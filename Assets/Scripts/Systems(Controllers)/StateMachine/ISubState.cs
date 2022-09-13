@@ -6,11 +6,13 @@ public interface ISubState {
 
     StateMachine sm { get; set; }
 
-    public void Enter(StateMachine _sm) {
+    public void Enter(StateMachine _sm) 
+    {
         sm = _sm;
     }
 
-    public void Execute() {
+    public void Execute() 
+    {
         this.LogicUpdate();
         this.AnimUpdate();
     }
@@ -18,11 +20,13 @@ public interface ISubState {
     public void Exit();
     
 #region Execute
-    private void LogicUpdate() {
+    private void LogicUpdate() 
+    {
 
     }
     
-    private void AnimUpdate() {
+    private void AnimUpdate() 
+    {
 
     }
 #endregion

@@ -10,8 +10,7 @@ public class InputHold : IState {
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
-        sm.im.canGetInput = false;
-        inputHeld = false;
+
     }
 
     public void Execute() {
@@ -27,17 +26,11 @@ public class InputHold : IState {
 #region Execute
 
     public void HandleInput() {
-        if(!inputHeld) {
-            sm.im.PauseFor(1f);
-            inputHeld = true;
-        }
+
     }
 
     public void PhysicsUpdate() {
-       
-        if(sm.im.canGetInput) {
-            sm.ChangeState(sm.GetPreviousState(), sm.GetPreviousSubState());
-        }
+
     }
 
 #endregion

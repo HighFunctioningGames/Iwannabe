@@ -8,9 +8,9 @@ public class OnBoardState : IState {
 
      public void Enter(StateMachine _sm) {
         sm = _sm;
-        sm.pc.p.canMove = false;
-        sm.pc.p.board.SwitchOn();
-        sm.pc.p.velocity *= 2;
+        sm.p.canMove = false;
+        sm.p.board.SwitchOn();
+        sm.p.velocity *= 2;
     }
 
     public void Execute() {
@@ -20,13 +20,17 @@ public class OnBoardState : IState {
     }
     
     public void Exit() {
-        sm.pc.p.board.SwitchOff();
-        sm.pc.p.canMove = false;
+        sm.p.board.SwitchOff();
+        sm.p.canMove = false;
     }
         
 #region Execute
-    private void HandleInput() {
-        sm.im.TransitionInput(sm);
+    private void HandleInput() 
+    {
+         if(sm.pc.switchOnOff) 
+        {
+            sm.ChangeState(new OffBoardState(), new OffIdleState());   
+        }
     }
 
     private void PhysicsUpdate() {

@@ -8,10 +8,10 @@ public class OffIdleState : ISubState {
 
     public void Enter(StateMachine _sm) {
         sm = _sm;
-        sm.pc.p.isIdle = true;
-        Vector3 rotation = sm.pc.p.rotater.rotation.eulerAngles;
+        sm.p.isIdle = true;
+        Vector3 rotation = sm.p.rotater.rotation.eulerAngles;
         rotation.x = 0;
-        sm.pc.p.rotater.rotation = Quaternion.Euler(rotation);
+        sm.p.rotater.rotation = Quaternion.Euler(rotation);
     }
 
     public void Execute() {
@@ -20,16 +20,16 @@ public class OffIdleState : ISubState {
     }
 
     public void Exit() {
-        sm.pc.p.isIdle = false;
+        sm.p.isIdle = false;
     }
     
 #region Execute
     public void LogicUpdate() {
-        float decayRate = sm.pc.p.isRunning ? 3f : 2f;
-        sm.pc.p.velocity = Vector3.MoveTowards(sm.pc.p.velocity, Vector3.zero, Time.deltaTime / decayRate);
+        float decayRate = sm.p.isRunning ? 3f : 2f;
+        sm.p.velocity = Vector3.MoveTowards(sm.p.velocity, Vector3.zero, Time.deltaTime / decayRate);
          
         // Stop looking in direction of movement
-        sm.pc.p.canLookTowardsVelocity = false;
+        sm.p.canLookTowardsVelocity = false;
     }
 
     public void AnimUpdate() {
